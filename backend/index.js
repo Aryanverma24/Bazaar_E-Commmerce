@@ -12,6 +12,7 @@ import userRoutes from "./routes/userRoutes.js"
 import categoryRoutes from './routes/category.js'
 import ProductRoutes from "./routes/ProductRoutes.js"
 import UploadRoutes from "./routes/UploadRoutes.js"
+import OrderRoutes from "./routes/orderRoutes.js";
 //config
 
 dotenv.config()
@@ -29,6 +30,8 @@ app.use("/api/users", userRoutes);
 app.use("/api/category", categoryRoutes);
 app.use("/api/product",ProductRoutes);
 app.use("/api/upload",UploadRoutes);
+app.use("/api/orders", OrderRoutes);
+
 
 const __dirname = path.resolve()
 app.use("/uploads",express.static(path.join(__dirname + "/uploads")))
