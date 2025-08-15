@@ -19,6 +19,8 @@ import { FaProductHunt } from "react-icons/fa";
 const Navigation = () => {
 
      const {userInfo} = useSelector(state=>state.auth)
+    const {cartItems} = useSelector(state => state.cart);
+
      const dispatch = useDispatch();
      const navigate = useNavigate();
      
@@ -71,10 +73,19 @@ const Navigation = () => {
                          <FaStore  className="mr-2 mt-[3rem] icon"/>
                          <span className="hidden nav-item">SHOP</span> {" "}
                     </Link>
-                    <Link to="/cart"
-                  className={`flex items-center ${isActive("/cart") ? "text-pink-500" : ""}`}>
+                    <Link to="/cart" 
+                  className={`flex items-center ${isActive("/cart") ? "text-pink-500" : ""} relative`}>
                          <FaCartArrowDown className="mr-2 mt-[3rem] icon"/>
                          <span className="hidden nav-item">CART</span> {" "}
+                         <div className={`absolute top-8 ${sidebar ? "right-[4.5rem] top-12" : "-right-2"}`}>
+                            {cartItems.length > 0 && (
+                              <span>
+                                <span className="text-white bg-pink-500 rounded-full px-1 py-0 text-sm">
+                                  {cartItems.reduce((acc,item) => acc + Number(item.qty),0)}
+                                </span>
+                              </span>
+                            )}
+                         </div>
                     </Link>
                     <Link to="/favourite"
                     className={`flex items-center ${isActive("/favourite") ? "text-pink-500" : ""}`}>
